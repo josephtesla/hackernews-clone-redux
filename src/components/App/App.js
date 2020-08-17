@@ -8,12 +8,8 @@ import { Wrapper, Title } from './styles'
 
 export default function App({fetchStoriesFirstPage, stories}) {
 
-
   useEffect(() => {
-
-    console.log(stories)
     fetchStoriesFirstPage();
-
 
   }, [fetchStoriesFirstPage])
 
@@ -22,7 +18,7 @@ export default function App({fetchStoriesFirstPage, stories}) {
       <div>
         <Wrapper>
           <Title>Hacker News Reader</Title>
-          <List />
+          <List stories={stories}/>
         </Wrapper>
       </div>
     </ThemeProvider>  
