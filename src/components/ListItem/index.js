@@ -1,7 +1,7 @@
 import React from 'react'
 import { Item, Title, Host, ExternalLink, Description, CommentLink } from "./styles";
 import getSiteHostname from "../../utils/getSiteHostname";
-import getTimeSince from '../../utils/getTimeSince';
+import { format } from 'timeago.js';
 
 const LINK_REL = "nofollow noreferrer noopener";
 
@@ -27,7 +27,7 @@ const ListItem = ({ by, kids = [], url, score, title, id, type, time }) => {
         <CommentLink href={userUrl} rel={LINK_REL} target="_blank">
           {by}
         </CommentLink> {' '}
-        {getTimeSince(time)} {' | '}
+        {format(new Date(time * 1000).toISOString())} {' | '}
         <CommentLink href={commentUrl} rel={LINK_REL} target="_blank">
           {kids.length} comments
         </CommentLink>
@@ -35,5 +35,7 @@ const ListItem = ({ by, kids = [], url, score, title, id, type, time }) => {
     </Item>
   )
 }
+
+
 
 export default ListItem;
