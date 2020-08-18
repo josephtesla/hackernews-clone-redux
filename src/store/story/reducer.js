@@ -33,7 +33,7 @@ export default function storyReducer(state = initialState, action) {
       console.log("loade successful")
       return {
         ...state,
-        storyIds: action.payload
+        storyIds: action.payload.storyIds
       }
 
 
@@ -48,6 +48,7 @@ export default function storyReducer(state = initialState, action) {
     case FETCH_STORY_IDS_FAILURE:
     case FETCH_STORIES_FAILURE:
       console.log("error occured")
+      console.log(action.payload)
       return {
         ...state,
         isFetching: false,

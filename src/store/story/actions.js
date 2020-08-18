@@ -31,6 +31,7 @@ const actions = {
   fetchStories: (payload = {}) => {
     return async (dispatch) => {
       const { storyIds, page } = payload;
+      console.log(payload)
       dispatch(action(actionTypes.FETCH_STORIES_REQUEST, payload));
       try {
         const stories = await hackerNewsApi.getStoryByPage(storyIds, page);

@@ -1,16 +1,20 @@
 
+
 export const actionTypes = {
   SET_THEME: "SET_THEME"
 }
 
-const actions = {
 
-  setTheme: (payload = {}) => {
-    return { 
-      type: actionTypes.SET_THEME, 
-      payload
-    }
+export const setTheme = (payload = {}) => {
+
+  const swapTheme = {
+    "dark": "light",
+    "light": "dark",
+  }
+
+  return {
+    type: actionTypes.SET_THEME,
+    payload: { theme: swapTheme[payload.theme] }
   }
 }
 
-export default actions;

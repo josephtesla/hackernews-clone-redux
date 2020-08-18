@@ -8,7 +8,9 @@ const hackerNewsApi = {};
 const PAGE_LIMIT = 20;
 
 const getPageSlice = (limit, page = 0) => ({begin: page * limit, end: (page + 1) * limit});
-const getPageValues = ({begin, end, items }) => items.slice(begin,  end);
+const getPageValues = ({begin, end, items }) => { 
+  return items.slice(begin,  end)
+};
 
 hackerNewsApi.getTopStoryIds = () => client.get("/topstories" + JSON_QUERY);
 
@@ -16,6 +18,7 @@ hackerNewsApi.getStory = id => client.get(`/item/${id}/${JSON_QUERY}`);
 
 hackerNewsApi.getStoryByPage = (ids, page) => {
   const { begin, end } = getPageSlice(PAGE_LIMIT, page);
+  
   const activeIds = getPageValues({begin, end, items: ids})
 
   const storyPromises = activeIds.map(id => hackerNewsApi.getStory(id))
