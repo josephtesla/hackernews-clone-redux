@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import List from "../List/index"
 import { ThemeProvider } from 'styled-components'
 import { colorsDark, colorsLight } from "../../styles/palette";
-import { AppWrapper, Wrapper, Title, SwitchButton } from './styles'
+import { AppWrapper, Wrapper } from './styles'
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "react-loader-spinner"
+import NavBar from '../NavBar';
 
 
 export default function App({
@@ -39,16 +40,7 @@ export default function App({
     <ThemeProvider theme={theme === "dark"? colorsDark: colorsLight}>
       <AppWrapper>
         <Wrapper >
-          <div style={{
-            display:"flex",
-            justifyContent:"space-between",
-            alignItems: "center"
-          }}>
-          <Title>Hacker News Reader</Title>
-          <SwitchButton onClick={handleThemeChange}>
-            {theme === "dark"? <span>Light Mode</span>: <span>Night Mode</span>}
-          </SwitchButton>
-          </div>
+          <NavBar handleThemeChange={handleThemeChange} theme={theme} />
           <InfiniteScroll
             dataLength={stories.length}
             next={fetchStories2}
